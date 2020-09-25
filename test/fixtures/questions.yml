@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  sentence: MyText
+  image_id: MyString
+  hint_1: MyString
+  hint_2: MyString
+  hint_3: MyString
+  answer: MyString
+  commentary: MyText
+  answer_image_id: MyString
+  average_rating: 1.5
+
+two:
+  user: two
+  sentence: MyText
+  image_id: MyString
+  hint_1: MyString
+  hint_2: MyString
+  hint_3: MyString
+  answer: MyString
+  commentary: MyText
+  answer_image_id: MyString
+  average_rating: 1.5
