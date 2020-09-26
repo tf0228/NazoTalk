@@ -8,6 +8,8 @@ header
           li.nav-item
             = link_to "マイページ", mypage_info_path, method: :get, class: "nav-link"
           li.nav-item
+            = link_to "問題を作る", new_question_path, method: :get, class: "nav-link"
+          li.nav-item
             = link_to "問題を探す", questions_path, method: :get, class: "nav-link"
           li.nav-item
             = link_to "ユーザを探す", users_path, method: :get, class: "nav-link"

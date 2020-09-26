@@ -25,6 +25,10 @@ div {
   float: left;
 }
 
+.edit {
+  margin-right: 50px;
+}
+
 .question-date {
   float: right;
   line-height: 80px;
@@ -32,13 +36,19 @@ div {
   padding-right: 10px;
 }
 
-.question-content {
+.question-content, .new-question, .edit-question {
   background-color: white;
   padding: 15px;
 }
 
 .question-image {
   width: 100%;
+}
+
+.edit-question {
+  .question-image, .answer-image {
+    width: 75%;
+  }
 }
 
 #hint-1-text, #hint-2-text, #hint-3-text {
