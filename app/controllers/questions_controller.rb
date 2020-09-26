@@ -45,7 +45,6 @@ class QuestionsController < ApplicationController
 
     def question_params
       params.require(:question).permit(:id, :user_id, :sentence, :image, :hint_1, :hint_2, :hint_3,
-                                        :answer, :commentary, :answer_image, :average_rating,
-                                        :remove_image, :remove_answer_image)
+                                        :answer, :commentary, :answer_image, :average_rating)
     end
 end
