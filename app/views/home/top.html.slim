@@ -1,0 +1,15 @@
+div.col-sm-2
+  h4 新着問題一覧
+div.col-sm-9
+  div.row.top-sentence
+    p
+      |
+        ようこそNazoTalkへ<br>
+        このサイトはなぞなぞ・クイズ専門のSNSサイトです<br>
+        自分の考えたなぞなぞやクイズを投稿したり<br>
+        他の人が投稿したなぞなぞやクイズを閲覧したりできます<br>
+        なぞなぞ・クイズの投稿やお気に入り登録には無料の会員登録が必要になります<br>
+        早速会員登録しましょう<br>
+  div.row.top-links
+    = link_to "会員登録", new_user_registration_path, class: "btn btn-lg btn-success active"
+    = link_to "ログイン", new_user_session_path, class: "btn btn-lg btn-primary active"

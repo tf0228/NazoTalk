@@ -14,4 +14,26 @@
  *= require_self
  */
 
+@import "bootstrap-sprockets";
+@import "bootstrap";
 @import "trix";
+
+body {
+  font-size: 18px;
+  background-color: #FFFFCC;
+}
+header {
+  background-color: #FFA500;
+  margin-bottom: 30px;
+}
+
+#logo {
+  font-size: 35px;
+  text-decoration: none;
+  color: white;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: white;
+}
