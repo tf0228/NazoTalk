@@ -23,12 +23,22 @@ class QuestionsController < ApplicationController
   end
 
   def edit
+    @question = Question.find(params[:id])
   end
 
   def update
+    @question = Question.find(params[:id])
+    if @question.update(question_params)
+      redirect_to question_path(@question), notice: "問題を編集しました"
+    else
+      render :edit
+    end
   end
 
   def destroy
+    @question = Question.find(params[:id])
+    @question.destroy
+    redirect_to mypage_questions_path
   end
 
   private

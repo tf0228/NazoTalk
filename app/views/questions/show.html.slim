@@ -36,7 +36,7 @@ div.col-xs-9
     div.question-answer
       button#show-answer.btn.btn-danger 正解を見る
       div#question-answer
-        = @question.answer
+        strong 正解： #{@question.answer}
         h4
           strong 解説
         = sanitize @question.commentary
