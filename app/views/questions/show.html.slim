@@ -1,0 +1,47 @@
+div.col-xs-9
+  div.question-info
+    div.question-number
+      h1 No.#{@question.id}
+    div.question-user
+      = link_to user_path(@question.user)
+        div.question-user-image
+          = attachment_image_tag @question.user, :image, :fill, 60, 60, fallback: "no_image.png",size: "60x60", class: "img-circle pull-left profile-thumb"
+        div.question-user-name
+          = @question.user.name
+    div.question-date
+      p 作成日：#{@question.created_at.strftime("%Y-%m-%d %H:%M")}
+
+  div.question-content
+    div.question-sentence
+      h3
+        strong 問題
+      = sanitize @question.sentence
+      = attachment_image_tag @question, :image, class: "question-image"
+    div.question-hints
+      - if @question.hint_1.present?
+        div.hint_1
+          button#hint-1.btn.btn-primary ヒント１を見る
+          p#hint-1-text
+            = @question.hint_1
+      - if @question.hint_2.present?
+        div.hint_2
+          button#hint-2.btn.btn-primary ヒント２を見る
+          p#hint-2-text
+            = @question.hint_2
+      - if @question.hint_3.present?
+        div.hint_3
+          button#hint-3.btn.btn-primary ヒント３を見る
+          p#hint-3-text
+            = @question.hint_3
+    div.question-answer
+      button#show-answer.btn.btn-danger 正解を見る
+      div#question-answer
+        = @question.answer
+        h4
+          strong 解説
+        = sanitize @question.commentary
+        = attachment_image_tag @question, :answer_image, class: "question-image"
+    - if @question.user == current_user
+      div.question-config
+        = button_to "編集する", edit_question_path(@question), method: :get, class: "btn btn-success"
+        = button_to "削除する", question_path(@question), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger"
