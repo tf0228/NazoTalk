@@ -1,0 +1,24 @@
+header
+  div.container-fluid.header
+    nav.nav.navbar-nav.navbar-left.nav-image
+      = link_to "NazoTalk", root_path, id: "logo"
+    nav
+      ul.nav.navbar-nav.navbar-right
+        - if current_user
+          li.nav-item
+            = link_to "マイページ", mypage_info_path, method: :get, class: "nav-link"
+          li.nav-item
+            = link_to "問題を探す", questions_path, method: :get, class: "nav-link"
+          li.nav-item
+            = link_to "ユーザを探す", users_path, method: :get, class: "nav-link"
+          li.nav-item
+            = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link"
+        - else
+          li.nav-item
+            = link_to "about", home_about_path, method: :get, class: "nav-link"
+          li.nav-item
+            = link_to "問題を探す", questions_path, method: :get, class: "nav-link"
+          li.nav-item
+            = link_to "ログイン", new_user_session_path, method: :get, class: "nav-link"
+          li.nav-item
+            = link_to "新規登録", new_user_registration_path, method: :get, class: "nav-link"

@@ -1,3 +1,28 @@
-// Place all the styles related to the home controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.top-sentence {
+  background-color: white;
+  height: 400px;
+  p {
+    text-align: center;
+    margin-top: 110px;
+  }
+}
+
+.top-links {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.btn {
+  margin-left: 30px;
+}
+
+h1, .about-sentence {
+  text-align: center;
+}
+
+.about-sentence {
+  height: 300px;
+  padding-top: 90px;
+  margin-top: 50px;
+  background-color: white;
+}
