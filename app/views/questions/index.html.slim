@@ -1,0 +1,14 @@
+h3 問題一覧
+div.col-xs-12
+  - @questions.each do |question|
+    div.question-bar
+      = link_to question_path(question)
+        div.question-number
+          h1 No.#{question.id}
+        div.question-user
+          div.question-user-image
+            = attachment_image_tag question.user, :image, :fill, 60, 60, fallback: "no_image.png",size: "60x60", class: "img-circle pull-left profile-thumb"
+          div.question-user-name
+            = question.user.name
+        div.question-date
+          p 作成日：#{question.created_at.strftime("%Y-%m-%d %H:%M")}

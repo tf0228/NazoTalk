@@ -1,3 +1,56 @@
-// Place all the styles related to the questions controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+label {
+  margin-right: 10px;
+}
+
+div {
+  margin-bottom: 15px;
+}
+
+.field, .btn {
+  margin-top: 20px;
+}
+
+.question-info, .question-bar {
+  height: 80px;
+  width: 85%;
+}
+
+.question-bar {
+  background-color: white;
+}
+
+.question-number, .question-user-name {
+  margin: auto 20px;
+  line-height: 80px;
+  float: left;
+}
+
+.question-date {
+  float: right;
+  line-height: 80px;
+  margin-bottom: 0;
+  padding-right: 10px;
+}
+
+.question-content {
+  background-color: white;
+  padding: 15px;
+}
+
+.question-image {
+  width: 100%;
+}
+
+#hint-1-text, #hint-2-text, #hint-3-text {
+  display: none;
+}
+
+#question-answer {
+  display: none;
+}
+
+.question-bar {
+  a:link, a:visited, a:hover, a:active {
+    color: black;
+  }
+}
