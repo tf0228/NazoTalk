@@ -1,7 +1,4 @@
 Rails.application.routes.draw do
-  get 'ratings/create'
-  get 'ratings/update'
-  get 'ratings/destroy'
   devise_for :users
   root 'home#top'
   get 'home/about'
