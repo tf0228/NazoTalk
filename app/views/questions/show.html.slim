@@ -1,5 +1,6 @@
-div.col-xs-9
-  div.question-info
+div#rating-modal
+div.col-xs-12
+  div.row.question-info
     div.question-number
       h1 No.#{@question.id}
     div.question-user
@@ -8,9 +9,11 @@ div.col-xs-9
           = attachment_image_tag @question.user, :image, :fill, 60, 60, fallback: "no_image.png",size: "60x60", class: "img-circle pull-left profile-thumb"
         div.question-user-name
           = @question.user.name
+    div.average-rating data-score="#{@question.average_rating}" 評価：#{@question.average_rating}(全#{@question.ratings.count}件) 
     div.question-date
       p 作成日：#{@question.created_at.strftime("%Y-%m-%d %H:%M")}
 
+div.col-xs-9
   div.question-content
     div.question-sentence
       h3
@@ -45,3 +48,33 @@ div.col-xs-9
       div.question-config
         = button_to "編集する", edit_question_path(@question), method: :get, class: "btn btn-success"
         = button_to "削除する", question_path(@question), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger"
+
+div.col-xs-3
+  = render 'ratings/ratings'
+
+- if @edit_rating
+  = render 'ratings/form'
+
+
+javascript:
+  $('#star').raty({
+    path: '/assets/',
+    scoreName: 'rating[value]',
+  });
+
+  $('.rating-value').raty({
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    },
+    path: '/assets/'
+  });
+
+  $('.average-rating').raty({
+    readOnly: true,
+    half: true,
+    path: '/assets/',
+    score: function() {
+      return $(this).attr('data-score')
+    }
+  });

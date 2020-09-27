@@ -19,7 +19,7 @@ div {
   background-color: white;
 }
 
-.question-number, .question-user-name {
+.question-number, .question-user-name, .average-rating {
   margin: auto 20px;
   line-height: 80px;
   float: left;
@@ -51,12 +51,25 @@ div {
   }
 }
 
-#hint-1-text, #hint-2-text, #hint-3-text {
+#hint-1-text, #hint-2-text, #hint-3-text, #question-comments, #question-answer {
   display: none;
 }
 
-#question-answer {
-  display: none;
+#show-comments h4 {
+  color: black;
+}
+
+.rating-comment {
+  padding: 5px;
+  width: 300px;
+  background-color: white;
+  .comment {
+  margin-left: 5px;
+  }
+}
+
+.question-comment-wrapper p {
+  text-align: center;
 }
 
 .question-bar {

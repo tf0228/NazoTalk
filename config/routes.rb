@@ -9,8 +9,12 @@ Rails.application.routes.draw do
   get 'mypage/questions'
   get 'mypage/favorites'
   get 'mypage/messages'
-  resources :questions
+  resources :questions do
+    resources :ratings, only: [:create, :edit, :update, :destroy]
+    resource :favorites, only: [:create, :destroy]
+  end
   resources :users, only: [:index, :show]
+  resources :relationships, only: [:create, :destroy]
   get 'users/:id/following' => "users#following"
   get 'users/:id/followers' => "users#followers"
   get 'withdraw/confirm'

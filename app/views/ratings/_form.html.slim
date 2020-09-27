@@ -1,0 +1,20 @@
+div.modal.fade#edit-rating-modal
+  div.modal-dialog
+    div.modal-content
+      div.modal-header
+        button.close type="button" data-dismiss="modal" ✕
+        h3.modal-title 評価・コメントの編集
+      div.modal-body
+        = form_for [@edit_rating.question, @edit_rating] do |f|
+          div.comment-form
+            #star.form-group
+              = f.label :value, "評価"
+              = f.hidden_field :value, id: "rating_star"
+            = f.label :comment, "コメント"
+            = f.text_area :comment, class: "form-control"
+            = f.submit "送信する", class: "btn btn-success"
+
+javascript:
+  $('#edit-rating').click( function () {
+    $('#edit-rating-modal').modal('toggle');
+  });

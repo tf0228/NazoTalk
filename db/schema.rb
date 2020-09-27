@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_25_053010) do
+ActiveRecord::Schema.define(version: 2020_09_27_094017) do
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2020_09_25_053010) do
     t.string "answer", null: false
     t.text "commentary"
     t.string "answer_image_id"
-    t.float "average_rating"
+    t.float "average_rating", default: 0.0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_questions_on_user_id"
@@ -46,6 +46,7 @@ ActiveRecord::Schema.define(version: 2020_09_25_053010) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["question_id"], name: "index_ratings_on_question_id"
+    t.index ["user_id", "question_id"], name: "index_ratings_on_user_id_and_question_id", unique: true
     t.index ["user_id"], name: "index_ratings_on_user_id"
   end
 
