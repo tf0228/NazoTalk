@@ -12,6 +12,7 @@
 //
 //= require trix
 //= require jquery
+//= require jquery_raty
 //= require bootstrap-sprockets
 //= require rails-ujs
 //= require activestorage

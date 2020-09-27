@@ -10,5 +10,16 @@ div.col-xs-12
             = attachment_image_tag question.user, :image, :fill, 60, 60, fallback: "no_image.png",size: "60x60", class: "img-circle pull-left profile-thumb"
           div.question-user-name
             = question.user.name
+        div.average-rating data-score="#{question.average_rating}" 評価：#{question.average_rating}(全#{question.ratings.count}件) 
         div.question-date
           p 作成日：#{question.created_at.strftime("%Y-%m-%d %H:%M")}
+
+javascript:
+  $('.average-rating').raty({
+    readOnly: true,
+    half: true,
+    path: '/assets/',
+    score: function() {
+      return $(this).attr('data-score')
+    }
+  });

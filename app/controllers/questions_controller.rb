@@ -6,6 +6,9 @@ class QuestionsController < ApplicationController
 
   def show
     @question = Question.find(params[:id])
+    @ratings = Rating.where(question_id: @question.id)
+    @rating = Rating.new
+    @edit_rating = Rating.find_by(user_id: current_user.id)
   end
 
   def new

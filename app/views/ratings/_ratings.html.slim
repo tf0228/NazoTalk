@@ -1,0 +1,27 @@
+div.question-comment-wrapper
+  button#show-comments.btn.btn-block.btn-link
+    h4 評価・コメント　#{@ratings.count} 件
+  div#question-comments
+    - @question.ratings.each do |rating|
+      div.rating-comment id="rating-#{rating.id}"
+        div.rating-avatar
+          = link_to user_path(rating.user)
+            = attachment_image_tag rating.user, :image, :fill, 60, 60, fallback: "no_image.png", size: "60x60", class: "img-circle pull-left profile-thumb"
+            = rating.user.name
+        div.rating-value data-score="#{rating.value}"
+        div.comment
+          = rating.comment
+        -if rating.user_id == current_user.id
+          button#edit-rating type="button" class="btn btn-success btn-sm" 編集する
+          = link_to "削除する", question_rating_path(rating.question, rating), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-sm btn-danger"
+  - unless @question.commented_by?(current_user)
+    = form_for [@question, @rating] do |f|
+      div.comment-form
+        #star.form-group
+          = f.label :value, "評価"
+          = f.hidden_field :value, id: "rating_star"
+        = f.label :comment, "コメント"
+        = f.text_area :comment, class: "form-control"
+        = f.submit "送信する", class: "btn btn-success"
+  - else
+    p 評価済です
