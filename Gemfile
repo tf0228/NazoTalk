@@ -75,4 +75,5 @@ gem 'html2slim'
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'
+  gem 'listen', '>= 3.0.5', '< 3.2'
 end
