@@ -58,7 +58,8 @@ div.col-xs-3
 
 javascript:
   $('#star').raty({
-    path: '/assets/',
+    starOn: "#{asset_path('star-on.png')}",
+    starOff: "#{asset_path('star-off.png')}",
     scoreName: 'rating[value]',
   });
 
@@ -67,14 +68,18 @@ javascript:
     score: function() {
       return $(this).attr('data-score');
     },
-    path: '/assets/'
+    starOn: "#{asset_path('star-on.png')}",
+    starOff: "#{asset_path('star-off.png')}",
+    starHalf: "#{asset_path('star-half.png')}",
   });
 
   $('.average-rating').raty({
     readOnly: true,
     half: true,
-    path: '/assets/',
     score: function() {
       return $(this).attr('data-score')
-    }
+    },
+    starOn: "#{asset_path('star-on.png')}",
+    starOff: "#{asset_path('star-off.png')}",
+    starHalf: "#{asset_path('star-half.png')}",
   });
