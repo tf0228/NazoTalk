@@ -1,6 +1,6 @@
 class Question < ApplicationRecord
   belongs_to :user
-  has_many :ratings
+  has_many :ratings, dependent: :delete_all
   attachment :image
   attachment :answer_image
 
