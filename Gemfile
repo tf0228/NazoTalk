@@ -71,3 +71,8 @@ gem 'kaminari', '~> 1.2.1'
 gem 'trix'
 gem 'slim'
 gem 'html2slim'
+
+gem 'dotenv-rails'
+group :production do
+  gem 'mysql2'
+end
