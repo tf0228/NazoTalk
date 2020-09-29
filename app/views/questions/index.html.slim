@@ -4,7 +4,7 @@ div.col-xs-12
     div.question-bar
       = link_to question_path(question)
         div.question-number
-          h1 No.#{question.id}
+          h1 No.#{question.number}
         div.question-user
           div.question-user-image
             = attachment_image_tag question.user, :image, :fill, 60, 60, fallback: "no_image.png",size: "60x60", class: "img-circle pull-left profile-thumb"
