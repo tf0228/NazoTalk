@@ -2,8 +2,8 @@ h3 問題編集
 = form_with model: @question, local: true do |f|
   div.edit-question
     div.field
-      = f.label :question_number, "問題No"
-      = f.number_field :question_number
+      = f.label :number, "問題No"
+      = f.number_field :number
     div.field
       = f.label :sentence, "問題"
       = f.hidden_field :sentence, id: "question_sentence"

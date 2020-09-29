@@ -35,8 +35,8 @@ ActiveRecord::Schema.define(version: 2020_09_29_063007) do
     t.float "average_rating", default: 0.0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "question_number"
-    t.index ["question_number"], name: "index_questions_on_question_number", unique: true
+    t.integer "number"
+    t.index ["number"], name: "index_questions_on_number", unique: true
     t.index ["user_id"], name: "index_questions_on_user_id"
   end
 
