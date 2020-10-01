@@ -10,6 +10,8 @@ div.col-xs-12
         div.question-user-name
           = @question.user.name
     div.average-rating data-score="#{@question.average_rating}" 評価：#{@question.average_rating}(全#{@question.ratings.count}件) 
+    dev.question-favorites
+      = render 'favorites', question: @question
     div.question-date
       p 作成日：#{@question.created_at.strftime("%Y-%m-%d %H:%M")}
 

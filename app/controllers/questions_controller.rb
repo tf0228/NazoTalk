@@ -8,7 +8,9 @@ class QuestionsController < ApplicationController
     @question = Question.find(params[:id])
     @ratings = Rating.where(question_id: @question.id)
     @rating = Rating.new
-    @edit_rating = Rating.find_by(user_id: current_user.id, question_id: @question.id)
+    if current_user
+      @edit_rating = Rating.find_by(user_id: current_user.id, question_id: @question.id)
+    end
   end
 
   def new
