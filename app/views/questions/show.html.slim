@@ -11,17 +11,7 @@ div.col-xs-12
           = @question.user.name
     div.average-rating data-score="#{@question.average_rating}" 評価：#{@question.average_rating}(全#{@question.ratings.count}件) 
     dev.question-favorites
-      - if user_signed_in? && @question.favorited_by?(current_user)
-        = link_to question_favorites_path(@question), method: :delete do
-          span.glyphicon.glyphicon-heart aria-hidden="true" style="color: red;"
-          = @question.favorites.count
-      - elsif user_signed_in?
-        = link_to question_favorites_path(@question), method: :post do
-          span.glyphicon.glyphicon-heart aria-hidden="true" style="color: gray;"
-          = @question.favorites.count
-      - else
-        span.glyphicon.glyphicon-heart aria-hidden="true" style="color: gray;"
-          = @question.favorites.count
+      = render 'favorites', question: @question
     div.question-date
       p 作成日：#{@question.created_at.strftime("%Y-%m-%d %H:%M")}
 
