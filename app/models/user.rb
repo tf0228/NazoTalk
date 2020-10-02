@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   has_many :questions
   has_many :favorites
+  has_many :favorite_questions, through: :favorites, source: :question
   has_many :active_relationships, class_name:  "Relationship", foreign_key: "follower_id"
   has_many :passive_relationships, class_name:  "Relationship",foreign_key: "followed_id"
   has_many :following, through: :active_relationships, source: :followed

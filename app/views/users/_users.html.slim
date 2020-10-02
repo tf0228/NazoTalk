@@ -12,14 +12,15 @@
           = link_to "フォロー数： #{user.following.count}", following_user_path(user)
         div class="user-followers user-followers-#{user.id}"
           = link_to "フォロワー数： #{user.followers.count}", followers_user_path(user)
-      div.user-follow
-        - unless user == current_user
-          div id="follow-form-#{user.id}"
-            - if current_user.following?(user)
-              = form_with(model: current_user.active_relationships.find_by(followed_id: user.id), method: :delete, local: true) do |f|
-                = f.submit "フォロー解除", class: "btn btn-danger"
-            - else
-              = form_with(model: current_user.active_relationships.build, local: true) do |f|
-                div
-                  = hidden_field_tag :followed_id, user.id
-                = f.submit "フォローする", class: "btn btn-success"
+      -if current_user
+        div.user-follow
+          - unless user == current_user
+            div id="follow-form-#{user.id}"
+              - if current_user.following?(user)
+                = form_with(model: current_user.active_relationships.find_by(followed_id: user.id), method: :delete, local: true) do |f|
+                  = f.submit "フォロー解除", class: "btn btn-danger"
+              - else
+                = form_with(model: current_user.active_relationships.build, local: true) do |f|
+                  div
+                    = hidden_field_tag :followed_id, user.id
+                  = f.submit "フォローする", class: "btn btn-success"

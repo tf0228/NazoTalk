@@ -29,9 +29,13 @@ class UsersController < ApplicationController
   end
 
   def questions
+    @user = User.find(params[:id])
+    @questions = @user.questions
   end
 
   def favorites
+    @user = User.find(params[:id])
+    @questions = @user.favorite_questions.order(:created_at)
   end
 
   def messages

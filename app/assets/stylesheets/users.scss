@@ -21,10 +21,6 @@
   padding: 5px;
 }
 
-.btn {
-  float: right;
-}
-
 .user-info {
   background-color: white;
   padding: 20px;
@@ -33,6 +29,9 @@
 .user-follow {
   float: left;
   padding: 0 40px;
+  .btn {
+    float: right;
+  }
 }
 
 .user-following, .user-followers {
