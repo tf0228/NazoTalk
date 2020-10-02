@@ -6,21 +6,27 @@ header
       ul.nav.navbar-nav.navbar-right
         - if current_user
           li.nav-item
-            = link_to "マイページ", mypage_info_path, method: :get, class: "nav-link"
+            = link_to "マイページ", user_path(current_user), class: "nav-link"
           li.nav-item
-            = link_to "問題を作る", new_question_path, method: :get, class: "nav-link"
+            = link_to "問題を作る", new_question_path, class: "nav-link"
           li.nav-item
-            = link_to "問題を探す", questions_path, method: :get, class: "nav-link"
+            = link_to "問題を探す", questions_path, class: "nav-link"
           li.nav-item
-            = link_to "ユーザを探す", users_path, method: :get, class: "nav-link"
+            = link_to "ユーザを探す", users_path, class: "nav-link"
           li.nav-item
             = link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link"
         - else
           li.nav-item
-            = link_to "about", home_about_path, method: :get, class: "nav-link"
+            = link_to "about", home_about_path, class: "nav-link"
           li.nav-item
-            = link_to "問題を探す", questions_path, method: :get, class: "nav-link"
+            = link_to "問題を探す", questions_path, class: "nav-link"
           li.nav-item
-            = link_to "ログイン", new_user_session_path, method: :get, class: "nav-link"
+            = link_to "ログイン", new_user_session_path, class: "nav-link"
           li.nav-item
-            = link_to "新規登録", new_user_registration_path, method: :get, class: "nav-link"
+            = link_to "新規登録", new_user_registration_path, class: "nav-link"
+- if notice
+  p.alert.alert-notice
+    = notice
+- if alert
+  p.alert.alert-error
+    = alert

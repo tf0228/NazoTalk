@@ -1,3 +1,40 @@
-// Place all the styles related to the users controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.users-bar {
+  height: 100px;
+  padding: 10px;
+  background-color: white;
+}
+
+.users-bar .users-avatar, .users-name {
+  margin: auto 5px;
+  line-height: 100px;
+  float: left;
+}
+
+.users-rank {
+  margin: auto 20px;
+  line-height: 100px;
+  float: left;
+}
+
+.user-panel, .side-menu {
+  background-color: white;
+  padding: 5px;
+}
+
+.btn {
+  float: right;
+}
+
+.user-info {
+  background-color: white;
+  padding: 20px;
+}
+
+.user-follow {
+  float: left;
+  padding: 0 40px;
+}
+
+.user-following, .user-followers {
+  line-height: 30px;
+}

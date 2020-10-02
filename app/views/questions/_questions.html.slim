@@ -1,19 +1,19 @@
-div class="question-bar question-bar_#{question.number}"
+div class="question-bar question-bar-#{question.number}"
   = link_to question_path(question)
-    div class="question-number question-number_#{question.number}"
+    div class="question-number question-number-#{question.number}"
       h1 No.#{question.number}
-    div class="question-user question-user_#{question.number}"
-      div class="question-user-image question-user-image_#{question.number}"
+    div class="question-user question-user-#{question.number}"
+      div class="question-user-image question-user-image-#{question.number}"
         = attachment_image_tag question.user, :image, :fill, 60, 60, fallback: "no_image.png",size: "60x60", class: "img-circle pull-left profile-thumb"
-      div class="question-user-name question-user-name_#{question.number}"
+      div class="question-user-name question-user-name-#{question.number}"
         = question.user.name
-    div class="average-rating average-rating_#{question.number}" data-score="#{question.average_rating}" 評価：#{question.average_rating}(全#{question.ratings.count}件) 
-    dev class="question-favorites question-favorites_#{question.number}"
+    div class="average-rating average-rating-#{question.number}" data-score="#{question.average_rating}" 評価：#{question.average_rating}(全#{question.ratings.count}件) 
+    dev class="question-favorites question-favorites-#{question.number}"
       - if user_signed_in? && question.favorited_by?(current_user)
         span.glyphicon.glyphicon-heart aria-hidden="true" style="color: red;"
         = question.favorites.count
       - else
         span.glyphicon.glyphicon-heart aria-hidden="true" style="color: gray;"
         = question.favorites.count
-    div class="question-date question-date_#{question.number}"
+    div class="question-date question-date-#{question.number}"
       p 作成日：#{question.created_at.strftime("%Y-%m-%d %H:%M")}

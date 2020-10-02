@@ -1,4 +1,4 @@
-h1
-  | Users#following
-p
-  | Find me in app/views/users/following.html.erb
+h3 #{@user.name}さんのフォロー一覧
+= render 'sidebar', user: @user
+div.col-xs-10
+ = render 'users', users: @users

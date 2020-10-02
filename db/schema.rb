@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_09_29_063007) do
+ActiveRecord::Schema.define(version: 2020_10_02_050359) do
+
+  create_table "comments", force: :cascade do |t|
+    t.integer "host_id", null: false
+    t.integer "client_id", null: false
+    t.text "text"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["client_id"], name: "index_comments_on_client_id"
+    t.index ["host_id"], name: "index_comments_on_host_id"
+  end
 
   create_table "favorites", force: :cascade do |t|
     t.integer "user_id"
@@ -60,16 +70,6 @@ ActiveRecord::Schema.define(version: 2020_09_29_063007) do
     t.index ["followed_id"], name: "index_relationships_on_followed_id"
     t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
     t.index ["follower_id"], name: "index_relationships_on_follower_id"
-  end
-
-  create_table "user_comments", force: :cascade do |t|
-    t.integer "host_id", null: false
-    t.integer "client_id", null: false
-    t.text "comment"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["client_id"], name: "index_user_comments_on_client_id"
-    t.index ["host_id"], name: "index_user_comments_on_host_id"
   end
 
   create_table "users", force: :cascade do |t|
