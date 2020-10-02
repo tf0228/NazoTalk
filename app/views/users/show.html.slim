@@ -1,4 +1,34 @@
-h1
-  | Users#show
-p
-  | Find me in app/views/users/show.html.erb
+h3 #{@title}
+
+= render 'sidebar', user: @user
+
+div.col-xs-9
+  div.user-info
+    div.user-name.row
+      div.col-xs-3
+        label ユーザ名
+      div.col-xs-9
+        = @user.name
+    div.user-profile.row
+      div.col-xs-3
+        label プロフィール
+      div.col-xs-9
+        = @user.profile
+    div.user-question-count.row
+      div.col-xs-3
+        label 作成した問題数
+      div.col-xs-9
+        = @user.questions.count
+    div.user-favorited-count.row
+      div.col-xs-3
+        label お気に入り<br>された数
+      div.col-xs-9
+        = @user.favorited_count
+    div.user-average-rating.row
+      div.col-xs-3
+        label 平均評価
+      div.col-xs-9
+        = @user.average_rating
+    - if @user == current_user
+      = link_to "編集する", edit_user_path(current_user), class: "btn btn-success"
+      = link_to "退会する", withdraw_confirm_path, class: "btn btn-danger"
