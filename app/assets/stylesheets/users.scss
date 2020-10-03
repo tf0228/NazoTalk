@@ -16,9 +16,15 @@
   float: left;
 }
 
-.user-panel, .side-menu {
+.user-panel {
   background-color: white;
   padding: 5px;
+}
+
+.side-menu {
+  font-size: 0.8em;
+  background-color: white;
+  padding: 10px;
 }
 
 .user-info {
@@ -36,4 +42,31 @@
 
 .user-following, .user-followers {
   line-height: 30px;
+}
+
+.comment {
+  background-color: white;
+  padding: 5px;
+}
+
+.comment-text {
+  margin-left: 90px;
+}
+
+.comment-date {
+  float: right;
+  margin-right: 10px;
+}
+
+.comment-text {
+  word-wrap: break-word;
+}
+
+.side-bar-user-follow .btn {
+  margin-left: 0;
+}
+
+.edit-user-profile {
+  background-color: white;
+  padding: 10px 25px;
 }

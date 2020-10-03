@@ -8,7 +8,10 @@ div.col-xs-9
       div.col-xs-3
         label ユーザ名
       div.col-xs-9
-        = @user.name
+        - if @user.is_active == false
+          p #{@user.name}（退会済み）
+        - else
+          =@user.name
     div.user-profile.row
       div.col-xs-3
         label プロフィール

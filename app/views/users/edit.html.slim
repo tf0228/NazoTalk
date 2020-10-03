@@ -1,0 +1,21 @@
+h3 #{@user.name}さんのプロフィール編集ページ
+
+= render 'sidebar', user: @user
+
+= form_for @user do |f|
+  div.col-xs-10
+    div.edit-user-profile
+      div.field.row
+        = attachment_image_tag @user, :image, :fill, 120, 120, fallback: "no_image.png",size: "120x120", class: "img-circle pull-left profile-thumb"
+        = f.attachment_field :image
+      div.field.row
+        = f.label :name, "名前"
+        = f.text_field :name
+      div.field.row
+        = f.label :email, "メールアドレス"
+        = f.email_field :email
+      div.field.row
+        = f.label :profile, "プロフィール"
+        = f.text_area :profile
+      = f.submit "編集する", class: "btn btn-lg btn-success edit"
+      = link_to "戻る", user_path(@user), class: "btn btn-lg btn-danger"

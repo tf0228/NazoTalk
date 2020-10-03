@@ -1,4 +1,6 @@
-h1
-  | Withdraw#confirm
-p
-  | Find me in app/views/withdraw/confirm.html.erb
+div.withdraw-confirm
+  h3 本当に退会しますか？
+  p 退会するとユーザ情報の閲覧・編集はできなくなります。<br>また、作成した問題の編集・削除はできなくなりますので、<br>削除したい場合は退会前に問題の削除をお願いします。<br>退会する場合は「退会する」をクリックしてください。
+  div.row
+    = link_to "退会する", withdraw_path, method: :patch, class: "btn btn-danger"
+    = link_to "マイページへ戻る", user_path(current_user), class: "btn btn-primary"

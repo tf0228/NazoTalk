@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
+    if params.has_key?(:search)
+      @users = User.where("name LIKE ?", "%#{params[:search][:name]}%")
+      @search_name = params[:search][:name]
+    else
+      @users = User.where(is_active: true)
+    end
   end
 
   def show
@@ -13,9 +18,16 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @user = User.find(params[:id])
   end
 
   def update
+    @user = User.find(params[:id])
+    if @user.update(user_params)
+      redirect_to user_path(@user), notice: "ユーザ情報を編集しました"
+    else
+      render :edit
+    end
   end
 
   def following
@@ -39,5 +51,15 @@ class UsersController < ApplicationController
   end
 
   def messages
+    @user = User.find(params[:id])
+    @comment = Comment.new
+    @comments = Comment.where(host_id: @user.id)
   end
+
+  private
+
+    def user_params
+      params.require(:user).permit(:image, :name, :email, :profile)
+    end
+
 end
