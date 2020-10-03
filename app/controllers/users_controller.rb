@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   def index
-    @users = User.all
+    if params.has_key?(:search)
+      @users = User.where("name LIKE ?", "%#{params[:search][:name]}%")
+      @search_name = params[:search][:name]
+    else
+      @users = User.where(is_active: true)
+    end
   end
 
   def show
@@ -51,7 +56,10 @@ class UsersController < ApplicationController
     @comments = Comment.where(host_id: @user.id)
   end
 
-  def user_params
-    params.require(:user).permit(:image, :name, :email, :profile)
-  end
+  private
+
+    def user_params
+      params.require(:user).permit(:image, :name, :email, :profile)
+    end
+
 end

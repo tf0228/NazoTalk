@@ -3,8 +3,8 @@ h3 #{@user.name}さんへのコメント一覧
 = render 'sidebar', user: @user
 
 div.col-xs-10
-  h4 全#{@comments.count} 件
-  -if current_user
+  h4 全 #{@comments.count} 件
+  - if current_user && @user.is_active
     = form_for [@user, @comment] do |f|
       div.comment-formform-group
         = f.text_area :text, class: "form-control"

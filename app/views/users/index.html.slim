@@ -1,2 +1,8 @@
 h3 ユーザ一覧
+div.search-form
+  = form_with scope: :search, url: users_path, method: :get, local: true do |f|
+    = f.label :name, "ユーザ名"
+    = f.text_field :name, value: @search_name
+    = f.submit "検索"
+
 = render 'users', users: @users
