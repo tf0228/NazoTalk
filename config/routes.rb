@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get 'comments/create'
+  get 'comments/destroy'
+  get 'create/destroy'
   devise_for :users
   root 'home#top'
   get 'home/about'

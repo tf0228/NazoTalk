@@ -1,0 +1,34 @@
+h3 #{@user.name}さんへのコメント一覧
+
+= render 'sidebar', user: @user
+
+div.col-xs-10
+  h4 全#{@comments.count} 件
+  -if current_user
+    = form_for [@user, @comment] do |f|
+      div.comment-formform-group
+        = f.text_area :text, class: "form-control"
+        = f.hidden_field :host_id, value: @user.id
+        = f.hidden_field :client_id, value: current_user.id
+        = f.submit "コメントする", class: "btn btn-success"
+  div.comments
+    - @comments.each do |comment|
+      div class="comment comment-#{comment.id}"
+        div class="comment-avatar comment-#{comment.id}-avatar"
+          = link_to user_path(comment.sender)
+            div class="comment-image comment-#{comment.id}-image"
+              = attachment_image_tag comment.sender, :image, :fill, 60, 60, fallback: "no_image.png",size: "80x80", class: "img-circle pull-left profile-thumb"
+            div class="comment-name comment-#{comment.id}-name col-xs-6"
+              = comment.sender.name
+            br
+        div class="comment-date comment-#{comment.id}-date"
+            p commented_at : #{comment.created_at.strftime("%Y-%m-%d %H:%M")}
+        div class="comment-text comment-#{comment.id}-text"
+            = comment.text
+
+        - if current_user
+          - if comment.sender == current_user
+            div.comment-config
+              = button_to "削除する", user_comment_path(@user, comment), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger"
+
+
