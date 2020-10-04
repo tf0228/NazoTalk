@@ -1,10 +1,12 @@
 class UsersController < ApplicationController
+  before_action :correct_user,   only: [:edit, :update]
+
   def index
     if params.has_key?(:search)
-      @users = User.where("name LIKE ?", "%#{params[:search][:name]}%")
+      @users = User.where("name LIKE ?", "%#{params[:search][:name]}%").page(params[:page]).per(20)
       @search_name = params[:search][:name]
     else
-      @users = User.where(is_active: true)
+      @users = User.where(is_active: true).page(params[:page]).per(20)
     end
   end
 
@@ -32,28 +34,28 @@ class UsersController < ApplicationController
 
   def following
     @user = User.find(params[:id])
-    @users = @user.following.all
+    @users = @user.following.all.page(params[:page]).per(20)
   end
 
   def followers
     @user = User.find(params[:id])
-    @users = @user.followers.all
+    @users = @user.followers.all.page(params[:page]).per(20)
   end
 
   def questions
     @user = User.find(params[:id])
-    @questions = @user.questions
+    @questions = @user.questions.page(params[:page]).per(20)
   end
 
   def favorites
     @user = User.find(params[:id])
-    @questions = @user.favorite_questions.order(:created_at)
+    @questions = @user.favorite_questions.order(:created_at).page(params[:page]).per(20)
   end
 
   def messages
     @user = User.find(params[:id])
     @comment = Comment.new
-    @comments = Comment.where(host_id: @user.id)
+    @comments = Comment.where(host_id: @user.id).page(params[:page]).per(20)
   end
 
   private
@@ -62,4 +64,8 @@ class UsersController < ApplicationController
       params.require(:user).permit(:image, :name, :email, :profile)
     end
 
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to root_url unless @user == current_user
+    end
 end

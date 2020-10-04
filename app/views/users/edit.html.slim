@@ -3,6 +3,7 @@ h3 #{@user.name}さんのプロフィール編集ページ
 = render 'sidebar', user: @user
 
 = form_for @user do |f|
+  = render 'layouts/errors', model: f.object
   div.col-xs-10
     div.edit-user-profile
       div.field.row

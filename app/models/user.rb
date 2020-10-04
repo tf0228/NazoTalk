@@ -13,6 +13,13 @@ class User < ApplicationRecord
   has_many :followers, through: :passive_relationships, source: :follower
   has_many :ratings
   attachment :image
+
+  validates :name, presence: true, length: { maximum: 30 }
+  validates :email, presence: true
+  validates :profile, length: { maximum: 250 }
+  validates :rank, presence: true
+  validates :is_active, inclusion: { in: [true, false] }
+
   enum rank: { bronze: 0, silver: 1, gold: 2, platinum: 3}
 
   def favorited_count

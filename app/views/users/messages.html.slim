@@ -3,7 +3,7 @@ h3 #{@user.name}さんへのコメント一覧
 = render 'sidebar', user: @user
 
 div.col-xs-10
-  h4 全 #{@comments.count} 件
+  h4 全 #{@comments.total_count} 件
   - if current_user && @user.is_active
     = form_for [@user, @comment] do |f|
       div.comment-formform-group
@@ -30,5 +30,7 @@ div.col-xs-10
           - if comment.sender == current_user
             div.comment-config
               = button_to "削除する", user_comment_path(@user, comment), method: :delete, data: { confirm: "本当に削除しますか？" }, class: "btn btn-danger"
+  div.page
+    = paginate @comments
 
 

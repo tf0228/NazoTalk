@@ -20,7 +20,7 @@ div {
 }
 
 .question-number, .question-user-name, .average-rating {
-  margin: auto 20px;
+  margin: auto 10px;
   line-height: 80px;
   float: left;
 }
@@ -84,5 +84,7 @@ div {
 }
 
 .sort-bar {
-  background-color: white;
+  a {
+    color: black;
+  }
 }

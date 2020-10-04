@@ -1,4 +1,6 @@
 class RatingsController < ApplicationController
+  before_action :correct_user,   only: [:edit, :update]
+
   def create
     @question = Question.find(params[:question_id])
     @rating = current_user.ratings.new(rating_params)
@@ -6,7 +8,7 @@ class RatingsController < ApplicationController
     if @rating.save
       redirect_to question_path(@question)
     else
-      render 'questions/show'
+      redirect_to question_path(@question), alert: "評価が空欄のため、評価・コメントできませんでした。"
     end
   end
 
@@ -16,8 +18,11 @@ class RatingsController < ApplicationController
 
   def update
     @rating = Rating.find(params[:id])
-    @rating.update(rating_params)
-    redirect_to question_path(params[:question_id])
+    if @rating.update(rating_params)
+      redirect_to question_path(params[:question_id])
+    else
+      redirect_to question_path(params[:question_id]), alert: "評価が空欄のため、評価・コメントを編集できませんでした。"
+    end
   end
 
   def destroy
@@ -29,5 +34,10 @@ class RatingsController < ApplicationController
 
     def rating_params
       params.require(:rating).permit(:user_id, :question_id, :value, :comment)
+    end
+
+    def correct_user
+      @rating = current_user.ratings.find_by(id: params[:id])
+      redirect_to root_path unless @rating
     end
 end

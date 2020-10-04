@@ -6,3 +6,5 @@ div.search-form
     = f.submit "検索"
 
 = render 'users', users: @users
+div.page
+    = paginate @users

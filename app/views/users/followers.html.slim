@@ -1,4 +1,6 @@
 h3 #{@user.name}さんのフォロワー一覧
 = render 'sidebar', user: @user
 div.col-xs-10
- = render 'users', users: @users
+  = render 'users', users: @users
+  div.page
+    = paginate @users
