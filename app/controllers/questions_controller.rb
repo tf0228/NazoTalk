@@ -1,7 +1,7 @@
 class QuestionsController < ApplicationController
 
   def index
-    @questions = Question.all.order(params[:sort])
+    @questions = Question.all.order(params[:sort]).page(params[:page]).per(20)
   end
 
   def show
@@ -42,8 +42,9 @@ class QuestionsController < ApplicationController
 
   def destroy
     @question = Question.find(params[:id])
+    user = @question.user
     @question.destroy
-    redirect_to mypage_questions_path
+    redirect_to questions_user_path(user)
   end
 
   private

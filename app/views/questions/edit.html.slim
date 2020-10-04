@@ -1,5 +1,6 @@
 h3 問題編集
 = form_with model: @question, local: true do |f|
+  = render 'layouts/errors', model: f.object
   div.edit-question
     div.field
       = f.label :number, "問題No"

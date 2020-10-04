@@ -6,7 +6,7 @@ class RatingsController < ApplicationController
     if @rating.save
       redirect_to question_path(@question)
     else
-      render 'questions/show'
+      redirect_to question_path(@question), alert: "評価が空欄のため、評価・コメントできませんでした。"
     end
   end
 
@@ -16,8 +16,11 @@ class RatingsController < ApplicationController
 
   def update
     @rating = Rating.find(params[:id])
-    @rating.update(rating_params)
-    redirect_to question_path(params[:question_id])
+    if @rating.update(rating_params)
+      redirect_to question_path(params[:question_id])
+    else
+      redirect_to question_path(params[:question_id]), alert: "評価が空欄のため、評価・コメントを編集できませんでした。"
+    end
   end
 
   def destroy

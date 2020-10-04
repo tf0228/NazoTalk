@@ -8,6 +8,8 @@ div.col-xs-12
     = link_to "評価の高い順" , questions_path(sort: "average_rating DESC"), class: "btn btn-link"
   - @questions.each do |question|
     = render 'questions', question: question
+  div.page
+    = paginate @questions
 
 javascript:
   $('.average-rating').raty({

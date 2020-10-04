@@ -50,3 +50,25 @@ header {
 .alert-error {
   color: red;
 }
+
+.page {
+  text-align: center;
+}
+
+.pagination>li>a {
+  border: none;
+  color: #696969;
+}
+
+.pagination>.active>a {
+  background: #FFA500;
+  border-radius: 15px;
+}
+
+.pagination>li>a:hover {
+  border-radius: 15px;
+}
+
+#error_explanation {
+  color: red;
+}

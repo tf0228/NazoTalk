@@ -1,0 +1,4 @@
+- if model.errors.any?
+  div#error_explanation
+    - model.errors.full_messages.each do |message|
+      li #{message}
