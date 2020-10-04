@@ -1,5 +1,11 @@
 h3 問題一覧
 div.col-xs-12
+  div.sort-bar
+    = link_to "投稿が新しい順", questions_path(sort: "created_at DESC"), class: "btn btn-link"
+    = link_to "投稿が古い順", questions_path(sort: "created_at"), class: "btn btn-link"
+    = link_to "問題No.の小さい順", questions_path(sort: "number"), class: "btn btn-link"
+    = link_to "問題No.の大きい順", questions_path(sort: "number DESC"), class: "btn btn-link"
+    = link_to "評価の高い順" , questions_path(sort: "average_rating DESC"), class: "btn btn-link"
   - @questions.each do |question|
     = render 'questions', question: question
 
