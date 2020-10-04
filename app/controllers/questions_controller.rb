@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+  before_action :correct_user,   only: [:edit, :update]
 
   def index
     @questions = Question.all.order(params[:sort]).page(params[:page]).per(20)
@@ -52,5 +53,10 @@ class QuestionsController < ApplicationController
     def question_params
       params.require(:question).permit(:number, :user_id, :sentence, :image, :hint_1, :hint_2, :hint_3,
                                         :answer, :commentary, :answer_image, :average_rating)
+    end
+
+    def correct_user
+      @question = current_user.questions.find_by(id: params[:id])
+      redirect_to root_path unless @question
     end
 end

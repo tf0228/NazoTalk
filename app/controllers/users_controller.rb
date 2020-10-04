@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :correct_user,   only: [:edit, :update]
+
   def index
     if params.has_key?(:search)
       @users = User.where("name LIKE ?", "%#{params[:search][:name]}%").page(params[:page]).per(20)
@@ -62,4 +64,8 @@ class UsersController < ApplicationController
       params.require(:user).permit(:image, :name, :email, :profile)
     end
 
+    def correct_user
+      @user = User.find(params[:id])
+      redirect_to root_url unless @user == current_user
+    end
 end

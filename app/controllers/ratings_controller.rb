@@ -1,4 +1,6 @@
 class RatingsController < ApplicationController
+  before_action :correct_user,   only: [:edit, :update]
+
   def create
     @question = Question.find(params[:question_id])
     @rating = current_user.ratings.new(rating_params)
@@ -32,5 +34,10 @@ class RatingsController < ApplicationController
 
     def rating_params
       params.require(:rating).permit(:user_id, :question_id, :value, :comment)
+    end
+
+    def correct_user
+      @rating = current_user.ratings.find_by(id: params[:id])
+      redirect_to root_path unless @rating
     end
 end
