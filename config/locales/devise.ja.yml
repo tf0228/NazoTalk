@@ -10,6 +10,9 @@ ja:
       not_saved: ""
 
   devise:
+    omniauth_callbacks:
+      user:
+        success: "githubアカウントでログインしました。"
     failure:
       unauthenticated: 'ログインしてください。'
 #      unauthenticated: 'You need to sign in or sign up before continuing.'

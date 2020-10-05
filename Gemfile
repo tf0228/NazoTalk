@@ -76,7 +76,8 @@ gem 'trix'
 gem 'slim'
 gem 'html2slim'
 gem 'enum_help'
-
+gem 'omniauth'
+gem 'omniauth-github'
 gem 'dotenv-rails'
 group :production do
   gem 'mysql2'

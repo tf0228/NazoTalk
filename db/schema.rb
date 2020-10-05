@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_10_02_050359) do
+ActiveRecord::Schema.define(version: 2020_10_05_032039) do
 
   create_table "comments", force: :cascade do |t|
     t.integer "host_id", null: false
@@ -85,6 +85,8 @@ ActiveRecord::Schema.define(version: 2020_10_02_050359) do
     t.integer "rank", default: 0, null: false
     t.string "image_id"
     t.boolean "is_active", default: true, null: false
+    t.string "provider", default: "", null: false
+    t.string "uid", default: "", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
