@@ -12,7 +12,7 @@ ja:
   devise:
     omniauth_callbacks:
       user:
-        success: "githubアカウントでサインアップしました。メールアドレスの変更をお願いします。"
+        success: "githubアカウントでログインしました。"
     failure:
       unauthenticated: 'ログインしてください。'
 #      unauthenticated: 'You need to sign in or sign up before continuing.'
