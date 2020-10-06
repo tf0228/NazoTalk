@@ -1,3 +1,5 @@
+div.question-tweet
+  = link_to "ツイート", @tweet_url, target: ["_blank"], class: "btn btn-twitter"
 div.question-comment-wrapper
   button#show-comments.btn.btn-block.btn-link
     h4 評価・コメント　#{@ratings.count} 件
