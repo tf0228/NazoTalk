@@ -13,6 +13,7 @@ ja:
     omniauth_callbacks:
       user:
         success: "githubアカウントでログインしました。"
+        failure: "githubアカウントでのログインに失敗しました。"
     failure:
       unauthenticated: 'ログインしてください。'
 #      unauthenticated: 'You need to sign in or sign up before continuing.'
