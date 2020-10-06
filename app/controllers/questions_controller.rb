@@ -2,7 +2,11 @@ class QuestionsController < ApplicationController
   before_action :correct_user,   only: [:edit, :update]
 
   def index
-    @questions = Question.all.order(params[:sort]).page(params[:page]).per(20)
+    if params[:sort] == "random"
+      @questions = Question.all.sample(20)
+    else
+      @questions = Question.all.order(params[:sort]).page(params[:page]).per(20)
+    end
   end
 
   def show

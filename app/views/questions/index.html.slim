@@ -6,9 +6,11 @@ div.col-xs-12
     = link_to "問題No.の小さい順", questions_path(sort: "number"), class: "btn btn-link"
     = link_to "問題No.の大きい順", questions_path(sort: "number DESC"), class: "btn btn-link"
     = link_to "評価の高い順" , questions_path(sort: "average_rating DESC"), class: "btn btn-link"
+    = link_to "ランダムに20件表示" , questions_path(sort: "random"), class: "btn btn-link"
   - @questions.each do |question|
     = render 'questions', question: question
-  div.page
+  if params[:sort] != "random"
+    div.page
     = paginate @questions
 
 javascript:
