@@ -16,6 +16,7 @@ class QuestionsController < ApplicationController
     if current_user
       @edit_rating = Rating.find_by(user_id: current_user.id, question_id: @question.id)
     end
+    # ツイート用リンク
     @tweet_url = URI.encode(
       "http://twitter.com/intent/tweet?original_referer=" +
       request.url +
@@ -57,6 +58,20 @@ class QuestionsController < ApplicationController
     user = @question.user
     @question.destroy
     redirect_to questions_user_path(user)
+  end
+
+  def number #リアルタイムバリデーション用メソッド
+    raise unless params[:q]
+
+    result = nil
+    if Question.find_by(number: params[:q])
+      result = "findNumber"
+    else
+      result = "notFound"
+    end
+
+    render :json => { :result => result}
+    return true
   end
 
   private
