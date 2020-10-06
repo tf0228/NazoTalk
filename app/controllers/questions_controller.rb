@@ -12,6 +12,13 @@ class QuestionsController < ApplicationController
     if current_user
       @edit_rating = Rating.find_by(user_id: current_user.id, question_id: @question.id)
     end
+    @tweet_url = URI.encode(
+      "http://twitter.com/intent/tweet?original_referer=" +
+      request.url +
+      "&url=" +
+      request.url +
+      "&text=" +
+      "あなたはこの問題、解けますか？")
   end
 
   def new
