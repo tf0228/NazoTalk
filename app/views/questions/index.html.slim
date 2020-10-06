@@ -9,9 +9,9 @@ div.col-xs-12
     = link_to "ランダムに20件表示" , questions_path(sort: "random"), class: "btn btn-link"
   - @questions.each do |question|
     = render 'questions', question: question
-  if params[:sort] != "random"
-    div.page
-    = paginate @questions
+  - if params[:sort] != "random"
+      div.page
+      = paginate @questions
 
 javascript:
   $('.average-rating').raty({
