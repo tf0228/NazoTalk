@@ -1,0 +1,79 @@
+= form_with model: question, local: true do |f|
+  = render 'layouts/errors', model: f.object
+  div class="#{wrapper}"
+    div.field
+      = f.label :number, "問題No"
+      = f.number_field :number
+      p#numberValidOrInvalid
+    div.field
+      = f.label :sentence, "問題"
+      = f.hidden_field :sentence, id: "question_sentence"
+      trix-editor input="question_sentence"
+    div.field
+      = f.label :image, "問題画像"
+      = f.attachment_field :image
+    div.field
+      = f.label :hint_1, "ヒント１"
+      = f.text_field :hint_1
+    div.field
+      = f.label :hint_2, "ヒント２"
+      = f.text_field :hint_2
+    div.field
+      = f.label :hint_3, "ヒント３"
+      = f.text_field :hint_3
+    div.field
+      = f.label :answer, "正解"
+      = f.text_field :answer
+    div.field
+      = f.label :commentary, "解説"
+      = f.hidden_field :commentary, id: "question_commentary"
+      trix-editor input="question_commentary"
+    div.field
+      = f.label :answer_image, "解説画像"
+      = f.attachment_field :answer_image
+
+    = f.submit "#{btn}", class: "btn btn-lg btn-success"
+    - if @question.id
+      = link_to "戻る", question_path(@question), class: "btn btn-lg btn-danger"
+
+/リアルタイムバリデーション用javascript
+javascript:
+  function numberSearch() {
+    clearTimeout(numberSearch.timeid);
+
+    numberSearch.timeid = setTimeout(function() {
+      var query = tgtInput.value;
+      if (query.length == 0) return false;
+
+      jQuery.ajax({
+        type : 'GET',
+        url : '/questions/number',
+        data : {
+          q : query
+        },
+        timeout : 1500,
+        success : function(data) {
+          if (data.result == "notFound") {
+            console.log("you can create with this question number")
+            tgtInput.classList.remove('is_invalid')
+            tgtInput.classList.add('is-valid')
+            validMessage.classList.add('text-success')
+            validMessage.classList.remove('text-danger')
+            validMessage.innerHTML = "有効な問題No.です"
+            } else {
+            console.log("you cannot create with this question number")
+            tgtInput.classList.remove('is-valid')
+            tgtInput.classList.add('is-invalid')
+            validMessage.classList.add('text-danger')
+            validMessage.classList.remove('text-success')
+            validMessage.innerHTML = '既に使われている問題No.です'
+            }
+        }
+      });
+    },500);
+  };
+  numberSearch.timeid = "";
+
+  var tgtInput = document.getElementById('question_number')
+  var validMessage = document.getElementById('numberValidOrInvalid')
+  tgtInput.onkeydown = numberSearch;
